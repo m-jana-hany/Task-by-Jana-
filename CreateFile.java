@@ -29,11 +29,14 @@ try {
       System.out.println("An error occurred.");
       e.printStackTrace();
     }
-addUser();
+logInUser();
+// addUser();
+
+
 
     }
     
-    public static void addUser(){
+  /*  public static void addUser(){
         Scanner username = new Scanner (System.in);
         System.out.println("enter ur username");
       String usrnm =  username.next();
@@ -49,7 +52,32 @@ addUser();
     catch (IOException e) {
       System.out.println("An error occurred.");
       e.printStackTrace();
-    }
+    } 
+    
+    }*/
+    
+    public static void logInUser(){
+        Scanner username = new Scanner (System.in);
+        System.out.println("enter ur username");
+      String usrnm =  username.next();
+       Scanner pass = new Scanner (System.in);
+               System.out.println("enter ur password");
+      String passwrd =  username.next();
+    
+      boolean login = false;
+
+    Scanner read = new Scanner("users.txt");
+      while(read.hasNextLine()) {
+         String line = read.nextLine();
+         if(line.indexOf(usrnm)!=-1) {
+            login= true;
+         }
+      }
+      if(login) {
+         System.out.println("U are Logged in now successfully.");
+      } else {
+         System.out.println("Log in failed");
+      }
     }
     
 }
