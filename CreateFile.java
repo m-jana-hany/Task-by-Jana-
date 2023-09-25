@@ -7,6 +7,9 @@ import  java.io.File;
 import  java.io.FileWriter;
 import java.io.IOException; 
 import java.util.Scanner;
+import java.nio.file.Files;
+import java.nio.file.Path;
+
 /**
  *
  * @author Administrator
@@ -16,7 +19,7 @@ public class CreateFile {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         
 try {
       File myObj = new File("users.txt");
@@ -29,14 +32,12 @@ try {
       System.out.println("An error occurred.");
       e.printStackTrace();
     }
+ // addUser();
 logInUser();
-// addUser();
-
-
 
     }
     
-  /*  public static void addUser(){
+    public static void addUser(){
         Scanner username = new Scanner (System.in);
         System.out.println("enter ur username");
       String usrnm =  username.next();
@@ -46,7 +47,7 @@ logInUser();
     try {
      FileWriter writer = new FileWriter("users.txt");
      writer.write("ur username is: " + usrnm);
-     writer.append("ur password is: " +passwrd);
+     writer.append(" ur password is: " +passwrd);
      writer.close();
       }
     catch (IOException e) {
@@ -54,9 +55,9 @@ logInUser();
       e.printStackTrace();
     } 
     
-    }*/
+    }
     
-    public static void logInUser(){
+    public static void logInUser()throws IOException {
         Scanner username = new Scanner (System.in);
         System.out.println("enter ur username");
       String usrnm =  username.next();
@@ -66,13 +67,14 @@ logInUser();
     
       boolean login = false;
 
-    Scanner read = new Scanner("users.txt");
-      while(read.hasNextLine()) {
-         String line = read.nextLine();
-         if(line.indexOf(usrnm)!=-1) {
+   Path file =Path.of("users.txt");
+   String file1 = Files.readString( file);
+    if(file1.indexOf( usrnm )!=-1) {
             login= true;
+           
          }
-      }
+
+         
       if(login) {
          System.out.println("U are Logged in now successfully.");
       } else {
