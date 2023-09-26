@@ -1,0 +1,47 @@
+package FileTask;
+import java.io.IOException; 
+import java.util.Scanner;
+import java.nio.file.Files;
+import java.nio.file.Path;
+
+/**
+ *
+ * @author Administrator
+ */
+public class CreateFile {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) throws IOException {
+        
+ logInUser();
+
+    }
+    
+    
+    public static void logInUser()throws IOException {
+        Scanner username = new Scanner (System.in);
+        System.out.println("enter ur username");
+      String usrnm =  username.next();
+       Scanner pass = new Scanner (System.in);
+               System.out.println("enter ur password");
+      String passwrd =  username.next();
+    
+      boolean login = false;
+
+   Path file =Path.of("users.txt");
+   String file1 = Files.readString( file);
+    if(file1.indexOf( usrnm )!=-1 && file1.indexOf( passwrd )!=-1) {
+            login= true;
+           
+    }
+         
+      if(login) {
+         System.out.println("U are Logged in now successfully.");
+      } else {
+         System.out.println("Log in failed");
+      }
+    }
+    
+}
